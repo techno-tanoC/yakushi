@@ -10,4 +10,4 @@ class ToJsonML a where
     toJsonML :: a -> Element
 
 class FromJsonML a where
-    fromJsonML :: Element -> a
+    parseJsonML :: Element -> a

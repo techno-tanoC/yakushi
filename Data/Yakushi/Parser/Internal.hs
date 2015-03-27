@@ -89,29 +89,23 @@ escaped = do
     dquote
     return chs
 
-comma :: Parser Char
-comma = blanks *> char ',' <* blanks
-
 blank :: Parser Char
 blank = space <|> newline
 
 blanks :: Parser String
 blanks = many blank
 
-colon :: Parser Char
+comma, colon, dquote, rcb, lcb, rsb, lsb :: Parser Char
+comma = blanks *> char ',' <* blanks
+
 colon = blanks *> char ':' <* blanks
 
-dquote :: Parser Char
 dquote = blanks *> char '"' <* blanks
 
-rcb :: Parser Char
 rcb = blanks *> char '}' <* blanks
 
-lcb :: Parser Char
 lcb = blanks *> char '{' <* blanks
 
-rsb :: Parser Char
 rsb = blanks *> char ']' <* blanks
 
-lsb :: Parser Char
 lsb = blanks *> char '[' <* blanks
