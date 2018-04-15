@@ -1,8 +1,6 @@
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 module Data.Yakushi.Type where
 
-import GHC.Generics
 import Data.Aeson
 import Data.Text (pack)
 import Data.Vector (fromList)
@@ -15,7 +13,7 @@ data AttributeValue =
   | ABool Bool
   | ANull
   | AStr String
-  deriving (Eq, Show, Generic)
+  deriving (Eq, Show)
 
 instance ToJSON AttributeValue where
   toJSON (ANum i) =  Number . fromInteger $ i
@@ -24,7 +22,7 @@ instance ToJSON AttributeValue where
   toJSON (AStr s) = toJSON s
 
 data Attribute = Attribute AttributeName AttributeValue
-  deriving (Eq, Show, Generic)
+  deriving (Eq, Show)
 
 instance ToJSON Attribute where
   toJSON (Attribute n v) = object [pack n .= v]
@@ -37,7 +35,7 @@ data Element =
   | TA TagName Attributes
   | TE TagName ElementList
   | Str String
-  deriving (Eq, Show, Generic)
+  deriving (Eq, Show)
 
 instance ToJSON Element where
   toJSON (TAE t as es) = Array $ fromList [
