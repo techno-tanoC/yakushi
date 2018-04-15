@@ -1,6 +1,7 @@
-module Data.Yakushi.Types.Internal
+module Data.Yakushi.Type
     (
       Element(..)
+    , AttributeList
     , Attributes
     , ElementList
     , Attribute(..)
@@ -18,6 +19,7 @@ data Element =
   | Str String
     deriving (Eq, Show)
 
+type AttributeList = [Attribute]
 type Attributes = [Attribute]
 
 type ElementList = [Element]

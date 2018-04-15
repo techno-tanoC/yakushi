@@ -1,4 +1,4 @@
-module Data.Yakushi.Parser.Internal
+module Data.Yakushi.Parser
     (
       element
     ) where
@@ -10,7 +10,7 @@ import Text.Parsec
 import Text.Parsec.Char
 import Text.Parsec.String
 
-import Data.Yakushi.Types.Internal
+import Data.Yakushi.Type
 
 element :: Parser Element
 element =
