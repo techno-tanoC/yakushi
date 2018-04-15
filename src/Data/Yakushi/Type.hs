@@ -17,8 +17,17 @@ data AttributeValue =
   | AStr String
   deriving (Eq, Show, Generic)
 
+instance ToJSON AttributeValue where
+  toJSON (ANum i) =  Number . fromInteger $ i
+  toJSON (ABool b) = Bool b
+  toJSON ANull =  Null
+  toJSON (AStr s) = toJSON s
+
 data Attribute = Attribute AttributeName AttributeValue
   deriving (Eq, Show, Generic)
+
+instance ToJSON Attribute where
+  toJSON (Attribute n v) = object [pack n .= v]
 
 type AttributeList = [Attribute]
 type Attributes = [Attribute]
@@ -29,5 +38,21 @@ data Element =
   | TE TagName ElementList
   | Str String
   deriving (Eq, Show, Generic)
+
+instance ToJSON Element where
+  toJSON (TAE t as es) = Array $ fromList [
+      toJSON t
+    , toJSON as
+    , toJSON es
+    ]
+  toJSON (TA t as) = Array $ fromList [
+      toJSON t
+    , toJSON as
+    ]
+  toJSON (TE t es) = Array $ fromList [
+      toJSON t
+    , toJSON es
+    ]
+  toJSON (Str s) = toJSON s
 
 type ElementList = [Element]
