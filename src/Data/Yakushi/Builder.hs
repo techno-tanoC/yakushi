@@ -19,7 +19,7 @@ attributeValue ANull = "null"
 attributeValue (AStr str) = "\"str\""
 
 attribute :: Attribute -> String
-attribute (name, val) = attributeName name ++ ":" ++ attributeValue val
+attribute (Attribute name val) = attributeName name ++ ":" ++ attributeValue val
 
 attributeList :: AttributeList -> String
 attributeList [] = ""

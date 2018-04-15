@@ -6,8 +6,8 @@ import Data.Yakushi.Parser
 
 as :: Attributes
 as = [
-    ("a", ANull)
-   , ("b", ABool True)
+    Attribute "a" ANull
+  , Attribute "b" (ABool True)
   ]
 
 ta :: Element

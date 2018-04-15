@@ -1,38 +1,33 @@
-module Data.Yakushi.Type
-    (
-      Element(..)
-    , AttributeList
-    , Attributes
-    , ElementList
-    , Attribute(..)
-    , AttributeValue(..)
-    , TagName
-    , AttributeName
-    ) where
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+module Data.Yakushi.Type where
 
+import GHC.Generics
+import Data.Aeson
+import Data.Text (pack)
+import Data.Vector (fromList)
+
+type TagName = String
+type AttributeName = String
+
+data AttributeValue =
+    ANum Integer
+  | ABool Bool
+  | ANull
+  | AStr String
+  deriving (Eq, Show, Generic)
+
+data Attribute = Attribute AttributeName AttributeValue
+  deriving (Eq, Show, Generic)
+
+type AttributeList = [Attribute]
+type Attributes = [Attribute]
 
 data Element =
     TAE TagName Attributes ElementList
   | TA TagName Attributes
   | TE TagName ElementList
-  | T TagName
   | Str String
-    deriving (Eq, Show)
-
-type AttributeList = [Attribute]
-type Attributes = [Attribute]
+  deriving (Eq, Show, Generic)
 
 type ElementList = [Element]
-
-type Attribute = (AttributeName, AttributeValue)
-
-data AttributeValue =
-    ANum Int
-  | ABool Bool
-  | ANull
-  | AStr String
-    deriving (Eq, Show)
-
-type TagName = String
-
-type AttributeName = String
