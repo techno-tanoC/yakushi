@@ -11,7 +11,7 @@ as = [
   ]
 
 ta :: Element
-ta = TA "tag" as 
+ta = TA "tag" as
 
 st :: Element
 st = Str "string element"
